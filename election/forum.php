@@ -13,6 +13,12 @@
 </head>
 
 <body>
+<?php
+session_start();
+// Inclure le fichier "bd.php"
+include "bd.php";
+$bdd = getBD();
+?>
 <div class="container-fluid p-2 text-white text-center" style='background-color: #453e9d;'>
         <img id="drapeau" src="images/drapeau.webp" width=10% style="float:left; border: 2px solid" >
 		<h1>Résultats élections présidentielles<br>
@@ -30,7 +36,7 @@
 <div class="container mt-4 container-custom">
   <div class="col-sm-12">
     <div class="list-group col-sm-10 mx-auto text-left">
-		<a href="sujet.html" class="list-group-item mt-2 mb-2 sujet">Nom du sujet 1 <i class="bi bi-heart" style="float:right"></i></a>
+		<a href="sujet.php" class="list-group-item mt-2 mb-2 sujet">Nom du sujet 1 <i class="bi bi-heart" style="float:right"></i></a>
     </div>
   </div>
 </div>

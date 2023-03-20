@@ -64,6 +64,7 @@
     
     
 <div style='text-align:center; margin:20px;' id="rechdep">
+  <form action="resultat.php" method="POST">
     <?php 
         include 'bd.php';
         $bdd=getBD();
@@ -82,8 +83,8 @@
                 }
             ?>
         </select>
-
         <input style='border-radius:30px' type="submit" value="Chercher">
+		</form>
     </div>
 <div id="map"></div>
 
@@ -150,7 +151,10 @@ function onEachFeature(feature, layer) {
     layer.on({
         mouseover: highlightFeature,
         mouseout: resetHighlight,
-        click: zoomToFeature
+        //click: zoomToFeature
+		click: function(e) {
+            window.location.href = "resultat.php";
+        }
     });
 }
 
