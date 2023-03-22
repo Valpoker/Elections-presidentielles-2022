@@ -30,7 +30,7 @@
 <div class="container mt-4 container-custom">
   <div class="col-sm-12">
     <div class="list-group col-sm-10 mx-auto text-left">
-		<a href="sujet.html" class="list-group-item mt-2 mb-2 sujet">Nom du sujet 1 <i class="bi bi-heart" style="float:right"></i></a>
+		<a href="sujet.php" class="list-group-item mt-2 mb-2 sujet">Nom du sujet 1 <i class="bi bi-heart" style="float:right"></i></a>
     </div>
   </div>
 </div>
