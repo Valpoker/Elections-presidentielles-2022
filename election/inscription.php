@@ -11,7 +11,7 @@
 
 <body>
     <div class="container-fluid p-2 text-white text-center" style='background-color: #453e9d;'>
-        <img id="drapeau" src="images/drapeau.webp" width=10% style="float:left; border: 2px solid" >
+        <img id="drapeau" src="images/drapeau.jpg" width=10% style="float:left; border: 2px solid" >
 		<h1>Résultats élections présidentielles<br>
      		2022 second tour</h1>
     </div>
