@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : localhost:8889
--- Généré le : mar. 07 mars 2023 à 12:11
--- Version du serveur :  5.7.34
--- Version de PHP : 7.4.21
+-- Hôte : 127.0.0.1:3306
+-- Généré le : lun. 20 mars 2023 à 13:01
+-- Version du serveur : 5.7.36
+-- Version de PHP : 7.4.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,14 +27,18 @@ SET time_zone = "+00:00";
 -- Structure de la table `commentaire`
 --
 
-CREATE TABLE `commentaire` (
-  `codecom` int(11) NOT NULL,
-  `texte` varchar(100) NOT NULL,
-  `date` date NOT NULL,
-  `heure` time NOT NULL,
-  `pseudo` varchar(20) NOT NULL,
-  `numsalle` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `commentaire`;
+CREATE TABLE IF NOT EXISTS `commentaire` (
+  `codecom` int(11) NOT NULL AUTO_INCREMENT,
+  `texte` text,
+  `date` date DEFAULT NULL,
+  `heure` time DEFAULT NULL,
+  `pseudo` int(11) DEFAULT NULL,
+  `num_salle` int(11) DEFAULT NULL,
+  PRIMARY KEY (`codecom`),
+  KEY `pseudo` (`pseudo`),
+  KEY `num_salle` (`num_salle`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -42,9 +46,11 @@ CREATE TABLE `commentaire` (
 -- Structure de la table `correspondre`
 --
 
-CREATE TABLE `correspondre` (
+DROP TABLE IF EXISTS `correspondre`;
+CREATE TABLE IF NOT EXISTS `correspondre` (
   `codedep` varchar(2) NOT NULL,
-  `codeelec` varchar(2) NOT NULL
+  `codeelec` varchar(2) NOT NULL,
+  PRIMARY KEY (`codedep`,`codeelec`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -166,13 +172,15 @@ INSERT INTO `correspondre` (`codedep`, `codeelec`) VALUES
 -- Structure de la table `departement`
 --
 
-CREATE TABLE `departement` (
+DROP TABLE IF EXISTS `departement`;
+CREATE TABLE IF NOT EXISTS `departement` (
   `codedep` varchar(2) NOT NULL,
   `nom` varchar(31) DEFAULT NULL,
   `region` varchar(31) DEFAULT NULL,
   `chef_lieu` varchar(20) DEFAULT NULL,
   `superficie` int(6) DEFAULT NULL,
-  `population` int(7) DEFAULT NULL
+  `population` int(7) DEFAULT NULL,
+  PRIMARY KEY (`codedep`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -291,21 +299,11 @@ INSERT INTO `departement` (`codedep`, `nom`, `region`, `chef_lieu`, `superficie`
 -- --------------------------------------------------------
 
 --
--- Structure de la table `deposer`
---
-
-CREATE TABLE `deposer` (
-  `pseudo` varchar(25) NOT NULL,
-  `numsalle` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `election`
 --
 
-CREATE TABLE `election` (
+DROP TABLE IF EXISTS `election`;
+CREATE TABLE IF NOT EXISTS `election` (
   `codeelec` varchar(2) NOT NULL,
   `Inscrits` int(7) DEFAULT NULL,
   `Abstentions` int(6) DEFAULT NULL,
@@ -319,7 +317,8 @@ CREATE TABLE `election` (
   `VoixMacron` int(6) DEFAULT NULL,
   `%VoixMacron` decimal(4,2) DEFAULT NULL,
   `VoixLePen` int(6) DEFAULT NULL,
-  `%VoixLePen` decimal(4,2) DEFAULT NULL
+  `%VoixLePen` decimal(4,2) DEFAULT NULL,
+  PRIMARY KEY (`codeelec`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -441,9 +440,11 @@ INSERT INTO `election` (`codeelec`, `Inscrits`, `Abstentions`, `%Abs`, `Votants`
 -- Structure de la table `likercom`
 --
 
-CREATE TABLE `likercom` (
+DROP TABLE IF EXISTS `likercom`;
+CREATE TABLE IF NOT EXISTS `likercom` (
   `codecom` int(11) NOT NULL,
-  `pseudo` varchar(20) NOT NULL
+  `pseudo` varchar(20) NOT NULL,
+  PRIMARY KEY (`codecom`,`pseudo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -452,9 +453,11 @@ CREATE TABLE `likercom` (
 -- Structure de la table `likerforum`
 --
 
-CREATE TABLE `likerforum` (
+DROP TABLE IF EXISTS `likerforum`;
+CREATE TABLE IF NOT EXISTS `likerforum` (
   `pseudo` varchar(20) NOT NULL,
-  `numsalle` int(11) NOT NULL
+  `numsalle` int(11) NOT NULL,
+  PRIMARY KEY (`pseudo`,`numsalle`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -463,11 +466,21 @@ CREATE TABLE `likerforum` (
 -- Structure de la table `salle_forum`
 --
 
-CREATE TABLE `salle_forum` (
-  `numsalle` int(11) NOT NULL,
-  `nomforum` varchar(50) NOT NULL,
-  `pseudo` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `salle_forum`;
+CREATE TABLE IF NOT EXISTS `salle_forum` (
+  `num_salle` int(11) NOT NULL AUTO_INCREMENT,
+  `nomforum` varchar(255) DEFAULT NULL,
+  `pseudo` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`num_salle`),
+  KEY `pseudo` (`pseudo`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `salle_forum`
+--
+
+INSERT INTO `salle_forum` (`num_salle`, `nomforum`, `pseudo`) VALUES
+(1, 'test', 'flo');
 
 -- --------------------------------------------------------
 
@@ -475,12 +488,14 @@ CREATE TABLE `salle_forum` (
 -- Structure de la table `utilisateur`
 --
 
-CREATE TABLE `utilisateur` (
+DROP TABLE IF EXISTS `utilisateur`;
+CREATE TABLE IF NOT EXISTS `utilisateur` (
   `pseudo` varchar(20) NOT NULL,
   `mail` varchar(50) NOT NULL,
   `mdp` varchar(50) NOT NULL,
   `nom` varchar(50) NOT NULL,
-  `prenom` varchar(50) NOT NULL
+  `prenom` varchar(50) NOT NULL,
+  PRIMARY KEY (`pseudo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -488,85 +503,8 @@ CREATE TABLE `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`pseudo`, `mail`, `mdp`, `nom`, `prenom`) VALUES
+('flo', 'popopo@gmail.com', 'aa36dc6e81e2ac7ad03e12fedcb6a2c0', 'Dubois', 'Florian'),
 ('michoudu07', 'mathilde@gmail.com', 'e0323a9039add2978bf5b49550572c7c', 'MICHEL', 'Mathilde');
-
---
--- Index pour les tables déchargées
---
-
---
--- Index pour la table `commentaire`
---
-ALTER TABLE `commentaire`
-  ADD PRIMARY KEY (`codecom`),
-  ADD KEY `numsalle` (`numsalle`),
-  ADD KEY `pseudo` (`pseudo`);
-
---
--- Index pour la table `correspondre`
---
-ALTER TABLE `correspondre`
-  ADD PRIMARY KEY (`codedep`,`codeelec`);
-
---
--- Index pour la table `departement`
---
-ALTER TABLE `departement`
-  ADD PRIMARY KEY (`codedep`);
-
---
--- Index pour la table `deposer`
---
-ALTER TABLE `deposer`
-  ADD PRIMARY KEY (`pseudo`,`numsalle`);
-
---
--- Index pour la table `election`
---
-ALTER TABLE `election`
-  ADD PRIMARY KEY (`codeelec`);
-
---
--- Index pour la table `likercom`
---
-ALTER TABLE `likercom`
-  ADD PRIMARY KEY (`codecom`,`pseudo`);
-
---
--- Index pour la table `likerforum`
---
-ALTER TABLE `likerforum`
-  ADD PRIMARY KEY (`pseudo`,`numsalle`);
-
---
--- Index pour la table `salle_forum`
---
-ALTER TABLE `salle_forum`
-  ADD PRIMARY KEY (`numsalle`),
-  ADD KEY `pseudo` (`pseudo`);
-
---
--- Index pour la table `utilisateur`
---
-ALTER TABLE `utilisateur`
-  ADD PRIMARY KEY (`pseudo`);
-
---
--- Contraintes pour les tables déchargées
---
-
---
--- Contraintes pour la table `commentaire`
---
-ALTER TABLE `commentaire`
-  ADD CONSTRAINT `commentaire_ibfk_1` FOREIGN KEY (`numsalle`) REFERENCES `salle_forum` (`numsalle`),
-  ADD CONSTRAINT `commentaire_ibfk_2` FOREIGN KEY (`pseudo`) REFERENCES `utilisateur` (`pseudo`);
-
---
--- Contraintes pour la table `salle_forum`
---
-ALTER TABLE `salle_forum`
-  ADD CONSTRAINT `salle_forum_ibfk_1` FOREIGN KEY (`pseudo`) REFERENCES `utilisateur` (`pseudo`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
