@@ -12,6 +12,12 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
+<?php
+session_start();
+// Connexion à la base de données
+include "bd.php";
+$bdd = getBD();
+?>
 <div class="container-fluid p-2 text-white text-center" style='background-color: #453e9d;'>
         <img id="drapeau" src="images/drapeau.webp" width=10% style="float:left; border: 2px solid" >
 		<h1>Résultats élections présidentielles<br>
@@ -28,19 +34,39 @@
     </div>
 <div class="container mt-5 col-sm-6 gris">
   <div class="row justify-content-center">
-    <div class="col-sm-12 mt-2">
-      <div class="chat-bubble-container">
-        <div class="chat-bubble bg-light col-sm-8">
-          <p>Bonjour c'est le sujet 1</p>
-        </div>
+    <div class="col-sm-12 mt-2 container-custom">
+		<?php 
+		if(isset($_SESSION["num_salle"])){
+			$num_salle=$_SESSION["num_salle"];
+			unset($_SESSION["num_salle"]);
+		}
+		else{
+			$num_salle=$_POST['num_salle'];
+		}
+		$coms = $bdd->query('SELECT * FROM commentaire WHERE num_salle = ' . $num_salle);
+		while ($ligne = $coms->fetch()){
+			if( $ligne['pseudo']==$_SESSION['utilisateur']['pseudo']){
+				echo "<div class='my_chat-bubble ' bg-light'>";
+				echo "<p class='mon_pseudo'> " .'MOI'. "</p>";
+				echo "<p class='mon_texte'> ".$ligne['texte']."</p>";
+				echo "</div>";
+			}
+			else{
+				echo "<div class='chat-bubble ' bg-light '>";
+				echo "<p class='pseudo'> ".$ligne['pseudo']. $num_salle. "</p>";
+				echo "<p class='texte'> ".$ligne['texte']."</p>";
+				echo "</div>";
+			}
+		}
+		?>
       </div>
-      <form class="mt-3">
-        <input type="text" class="form-control" placeholder="Saisir un message">
+      <form class="mt-3 poster_commentaire" method="POST" action="poster_com.php">
+	    <textarea class="form-control" id="texte" name="texte" rows="3" placeholder="Saisir un message"></textarea>
+		<input type="hidden" name="num_salle" value="<?php echo $num_salle; ?>">
 		<div class=" text-center mt-2">
         <button type="submit" class="btn btn-custom mb-2">Envoyer</button>
 		</div>
       </form>
-    </div>
   </div>
 </div>
 

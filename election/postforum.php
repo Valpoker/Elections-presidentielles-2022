@@ -24,16 +24,16 @@
 		</ul>
     </div>
 <div class="container mt-4 col-sm-6">
-      <form method="post" action="sujet.php" autocomplete="off">
+      <form method="post" action="creer_salle_forum.php" autocomplete="off">
         <div class="form-group mx-auto col-sm-6" >
-          <label for="titre">Titre du sujet:</label>
-          <input type="text" class="form-control" id="titre" name="titre">
+          <label for="nomforum">Nom du forum:</label>
+          <input type="text" class="form-control" id="nomforum" name="nomforum" value="<?php echo isset($_GET['nomforum']) ? $_GET['nomforum'] : ''; ?>">
         </div>
         <div class="form-group mx-auto">
-          <label for="message">Premier message:</label>
-          <textarea class="form-control" id="message" name="message" rows="5"></textarea>
+          <label for="texte">Premier message:</label>
+          <textarea class="form-control" id="texte" name="texte" rows="5" value="<?php echo isset($_GET['texte']) ? $_GET['texte'] : ''; ?>"></textarea>
         </div>
-		 <div class="form-group text-center mt-2">
+		 <div class="text-center mt-2">
         <button type="submit" class="btn btn-custom mb-2">Envoyer</button>
 		</div>
       </form>

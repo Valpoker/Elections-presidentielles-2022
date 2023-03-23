@@ -202,16 +202,62 @@ text-align: center;}
 	border-color: #D2CAEC;
 	background-color:white;
 	box-shadow:0px 0px 10px rgba(0, 0, 0, 0.5);
-	height:60px;
+	min-height:60px;
 	font-size:30px;
 	font-weight:600;
+	word-wrap: break-word;
 }
 .chat-bubble {
-  background-color: #f0f0f0;
-  border-radius: 10px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-  padding: 10px;
+	background-color: #f0f0f0;
+	border-radius: 10px;
+	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+	padding-right: 20px;
+	margin-right: 100px;
   }
+  
+.pseudo{
+	padding-left:2%;
+	padding-top: 0px;
+	font-size:15px;
+	font-weight:600;
+	color:grey;
+	text-transform: uppercase;
+	margin-bottom: -5px;
+
+}
+.texte{
+	font-size:20px;
+	padding-left:3%;
+	padding-top: -10px;
+	word-wrap: break-word;
+}
+.my_chat-bubble {
+	background-color: #afd499;
+	border-radius: 10px;
+	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+	padding-right: 20px;
+	margin-left: 100px;
+}
+.mon_pseudo{
+	padding-right:2%;
+	padding-top: 0px;
+	font-size:15px;
+	font-weight:600;
+	color:grey;
+	text-transform: uppercase;
+	margin-bottom: -5px;
+	text-align: right; /* Aligner le contenu sur la droite */
+}
+.mon_texte{
+	font-size:20px;
+	padding-right: 3%;
+	padding-left:auto;
+	padding-top: -10px;
+	word-wrap: break-word;
+	text-align: right; /* Aligner le contenu sur la droite */
+}
+
+
 
 
 
@@ -898,6 +944,5 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	margin-left: -12px;
 	border-right-color: #fff;
 	}
-
 
 

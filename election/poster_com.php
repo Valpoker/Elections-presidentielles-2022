@@ -12,18 +12,36 @@
 <?php
 session_start();
 
-poster_com($_SESSION['texte']);
-echo "<meta http-equiv=\"refresh\" content=\"0; url=sujet.php\" >";
-unset($_SESSION['texte']);
-function poster_com($texte) {
+if(isset($_SESSION['texte']) && !empty($_SESSION['texte'])){
+  $num_salle=$_SESSION["num_salle"];
+  poster_com($_SESSION['texte'], $num_salle);
+  unset($_SESSION['texte']);
+  echo "<meta http-equiv=\"refresh\" content=\"0; url=sujet.php\" >";
+}
+else{
+  if(isset($_POST['texte']) && empty($_POST['texte'])){
+    $_SESSION["num_salle"]=$_POST['num_salle'];
+    echo "<meta http-equiv=\"refresh\" content=\"0; url=sujet.php\" >";
+  }
+  else{
+    $_SESSION["num_salle"]=$_POST['num_salle'];
+    poster_com($_POST['texte'], $_SESSION["num_salle"]);
+    echo "<meta http-equiv=\"refresh\" content=\"0; url=sujet.php\" >";
+  }
+}
+
+function poster_com($texte, $num_salle) {
   // Connexion à la base de données
   include "bd.php";
   $bdd = getBD();
   
   //Récupération du pseudo de l'utilisateur
   $pseudo = $_SESSION['utilisateur']['pseudo'];
-  $num_salle = $_SESSION['num_salle'];
+  //Récupération du numéro de salle 
+  $num_salle = $_SESSION["num_salle"];
+  //Récupération de l'heure et de la date du commentaire
   $dt = new \DateTime();
+  $dt->add(new \DateInterval('PT1H')); // Ajoute 1 heure
   $date= $dt->format('Y-m-d');
   $heure= $dt->format('H:i:s');
 
@@ -32,10 +50,10 @@ function poster_com($texte) {
   
   // Exécution de la requête avec les paramètres
   $query->execute(array(
-    'texte' => $texte,
+  'texte' => $texte,
 	'date' => $date,
 	'heure' => $heure,
-    'pseudo' => $pseudo,
+  'pseudo' => $pseudo,
 	'num_salle' => $num_salle,
   ));
   
