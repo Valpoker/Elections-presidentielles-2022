@@ -24,6 +24,21 @@
 </div>
 </head>
 <body>
+<?php 
+	session_start();
+    include 'bd.php';
+    $bdd = getBD();
+
+	$_SESSION['nomDep'] = $_POST['nom'];
+	
+	$result = $bdd->prepare("SELECT TauxVoixMacron, TauxVoixLePen FROM election WHERE codeelec = :code_dep");
+	$result->execute(array(':code_dep' => $_POST['codedep']));
+
+	while ($ligne = $result->fetch(PDO::FETCH_ASSOC)) {
+   		$_SESSION['vote_macron'] = $ligne['TauxVoixMacron'];
+    	$_SESSION['vote_lepen'] = $ligne['TauxVoixLePen'];
+	}
+?>
 <div id=histo>
 	<?php
 		echo "<img src='./histo.php' />";

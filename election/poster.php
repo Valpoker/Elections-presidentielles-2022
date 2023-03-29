@@ -16,7 +16,7 @@ if (!isset($_SESSION['utilisateur'])){
 	echo "<meta http-equiv=\"refresh\" content=\"0; url=connexion.php\">";
 }
 else{
-	if(isset($_POST['titre']) && empty($_POST['titre']) || isset($_POST['texte']) && empty($_POST['texte']){
+	if(isset($_POST['titre']) && empty($_POST['titre']) || isset($_POST['texte']) && empty($_POST['texte'])){
 		echo "<meta http-equiv=\"refresh\" content=\"0; url=postforum.php?titre={$_POST['titre']}&texte={$_POST['texte']}\" >";
 	}
 	else{
@@ -42,7 +42,8 @@ function creer_salle($titre) {
   ));
   
   // Fermeture de la connexion à la base de données
-  $bdd = null
+  $bdd = null;
+}
 
 ?>
 </body>

@@ -2,8 +2,9 @@
 require_once ('jpgraph/src/jpgraph.php');
 require_once ('jpgraph/src/jpgraph_bar.php');
 
-$datay=array(54,46);
+session_start();
 
+$datay=array($_SESSION['vote_macron'],$_SESSION['vote_lepen']);
 
 // Create the graph. These two calls are always required
 $graph = new Graph(450,320,'auto');
@@ -23,13 +24,13 @@ $graph->yaxis->HideLine(false);
 // Create the bar plots
 $b1plot = new BarPlot($datay);
 
-// ...and add it to the graPH
+// ...and add it to the graph
 $graph->Add($b1plot);
 
 
 $b1plot->SetColor("white");
 $b1plot->SetWidth(60);
-$graph->title->Set("Résultats pour le département X");
+$graph->title->Set($_SESSION['nomDep']);
 
 // Display the graph
 $graph->Stroke();

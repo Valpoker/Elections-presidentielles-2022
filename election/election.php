@@ -71,28 +71,41 @@
     
     
 <div style='text-align:center; margin:20px;' id="rechdep">
-  <form action="resultat.php" method="POST">
-    <?php 
-        include 'bd.php';
-        $bdd=getBD();
-    ?>
+    <form action="resultat.php" method="POST">
+        <?php 
+            include 'bd.php';
+            $bdd = getBD();
+        ?>
         <select style='border-radius:30px' name="rechdep" id="listrechdep" size="1">
             <?php
-                $result = $bdd->query('SELECT codedep, nom FROM departement');
-                while ($ligne =  $result->fetch(PDO::FETCH_ASSOC))
-                {
+             $result = $bdd->query('SELECT codedep, nom FROM departement');
+             while ($ligne = $result->fetch(PDO::FETCH_ASSOC)) {
             ?>
-            <option value="<-- LISTE DES DEPARTEMENTS -->">
-                <?php echo $ligne['codedep'] ?>
-                <?php echo $ligne['nom'] ?>
-            </option>
-            <?php
-                }
-            ?>
+        <option value="<?php echo $ligne['codedep']; ?>">
+            <?php echo $ligne['codedep'] . ' - ' . $ligne['nom']; ?>
+        </option>
+
+        <?php
+        }
+        ?>
         </select>
+
+        <input type='hidden' name='nom' id='nom' value=''>
+        <input type="hidden" name="codedep" id="codedep" value=''>
+
+        <script>
+        document.getElementById("listrechdep").addEventListener("change", function() {
+        var select = this;
+        var inputNom = document.getElementById("nom");
+        var inputCodeDep = document.getElementById("codedep");
+        var option = select.options[select.selectedIndex];
+        inputNom.value = option.text.split(' - ')[1]; // assigne le nom de la ville à "nom"
+        inputCodeDep.value = option.text.split(' - ')[0]; // assigne le code département à "codedep"
+        });
+        </script>
         <input style='border-radius:30px' type="submit" value="Chercher">
-		</form>
-    </div>
+    </form>
+</div>
 <div id="map"></div>
 <div id="map2"></div>
 
