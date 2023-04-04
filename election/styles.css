@@ -256,12 +256,32 @@ text-align: center;}
 	word-wrap: break-word;
 	text-align: right; /* Aligner le contenu sur la droite */
 }
+.bi-heart {
+	color: grey;
+	float:right;
+}
+  
+.bi-heart.fill {
+	color: red;
+	animation-name: fill;
+	animation-duration: 0.5s;
+	animation-fill-mode: forwards;
+	float:right;
+}
+.bi{
+	float:right;
+}
+  
+@keyframes fill {
+	0% {transform: scale(1);}
+	50% {transform: scale(1.5);}
+	100% {transform: scale(1);}
+}
 
-
-
-
-
-
+.nbr_like_forum{
+	font-size: 15px;
+	float: right;
+}
 
 
 /*Style des formulaires connexions et creations*/

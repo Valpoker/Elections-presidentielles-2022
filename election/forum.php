@@ -10,6 +10,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	<link href="styles.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"> </script>
+	<script src="script.js"></script>
 	
 </head>
 
@@ -37,17 +39,28 @@ $bdd = getBD();
 <div class="container mt-4 container-custom">
 	<div class='col-sm-12'>
 		<div class='list-group col-sm-10 mx-auto text-left'>
-			<?php
-			$sujets = $bdd->query('select * from salle_forum');
-			while ($ligne = $sujets->fetch()) {
-				echo "<a href='#' class='list-group-item mt-2 mb-2 sujet' onclick='submitForm(".$ligne['num_salle'].")'>" .$ligne['nomforum'] ."<i class='bi bi-heart' style='float:right'></i></a>";
-			  }						  
-			?>
+		<?php
+    // Récupération avec la base de données des différents sujets du forum
+    $sujets = $bdd->query('SELECT * FROM salle_forum');
+    while ($ligne = $sujets->fetch()) {
+        $num_salle = $ligne['num_salle'];
+        $isLiked = get_like_utilisateur($num_salle, $bdd);
+        echo "<a href='#' class='list-group-item mt-2 mb-2 sujet'>
+            <span class='nomforum' onclick='submitForm(".$ligne['num_salle'].")'>$ligne[nomforum]</span>
+            <span class='nbr_like_forum'>" . nbr_like_forum($ligne['num_salle'], $bdd) . "</span>";
+        if (isset($_SESSION['utilisateur'])) {
+            $heartClass = $isLiked ? 'bi bi-heart fill' : 'bi bi-heart';
+            echo "<i class='$heartClass' num_salle='$num_salle'></i></a>";
+        } else {
+            echo "<i class='bi bi-heart' num_salle='$num_salle'></i></a>";
+        }
+    }
+?>
 		</div>
 	</div>
 </div>
 <div class="text-center">
-<?php 
+<?php //bouton pour poster sur le forum si utilisateur connecté
 if (isset($_SESSION['utilisateur'])){
 	echo "<a href='postforum.php' class='btn btn-custom mt-3'>Nouveau post forum</a>";
 }
@@ -72,6 +85,73 @@ else{
   form.submit();
 }
 </script>
+<?php
+if(isset($_POST['action']) && !empty($_POST['action'])) {
+    $action = $_POST['action'];
+    switch($action) {
+        case 'liker_forum':
+            if(isset($_POST['num_salle']) && !empty($_POST['num_salle'])) {
+                $num_salle = $_POST['num_salle'];
+                liker_forum($num_salle, $bdd);
+            }
+            break;
+		case 'disliker_forum':
+			if(isset($_POST['num_salle']) && !empty($_POST['num_salle'])) {
+				$num_salle = $_POST['num_salle'];
+				disliker_forum($num_salle, $bdd);
+			}
+			break;
+    }
+}
+//fonction pour compter le nombre de like d'un sujet
+function nbr_like_forum($num_salle, $bdd) {
+	// Préparation de la requête SQL
+	$query = $bdd->prepare('SELECT COUNT(*) FROM likerforum WHERE num_salle = :num_salle');
+	
+	// Exécution de la requête avec les paramètres
+	$query->execute(array(
+	'num_salle' => $num_salle,
+	));
+
+	return $query->fetchColumn();
+}
+//fonction pour ajouter un like sur un sujet
+function liker_forum($num_salle, $bdd) {
+	// Préparation de la requête SQL
+	$query = $bdd->prepare('INSERT INTO likerforum(pseudo, num_salle) VALUES(:pseudo, :num_salle)');
+	
+	// Exécution de la requête avec les paramètres
+	$query->execute(array(
+	'pseudo' => $_SESSION['utilisateur']['pseudo'],
+	'num_salle' => $num_salle,
+	));
+}
+//fonction pour enlever son like d'un sujet
+function disliker_forum($num_salle, $bdd) {
+    // Préparation de la requête SQL
+    $query = $bdd->prepare('DELETE FROM likerforum WHERE pseudo = :pseudo AND num_salle = :num_salle');
+    
+    // Exécution de la requête avec les paramètres
+    $query->execute(array(
+        'pseudo' => $_SESSION['utilisateur']['pseudo'],
+        'num_salle' => $num_salle,
+    ));
+}
+//fonction pour savoir quels sujets ont été likés par l'utilisateur
+function get_like_utilisateur($num_salle,$bdd) {
+	// test de connexion de l'utilisateur
+	if (!isset($_SESSION['utilisateur'])) {
+	  return false;
+	}
+  
+	// test pour voir quels sujet ont été likés par l'utilisateur 
+	$likes = $bdd->prepare('SELECT COUNT(*) FROM likerforum WHERE num_salle = ? AND pseudo = ?');
+	$likes->execute(array($num_salle, $_SESSION['utilisateur']['pseudo']));
+	$count = $likes->fetchColumn();
+	return ($count > 0);
+  }
+?>
+
 </body>
 
 </html>

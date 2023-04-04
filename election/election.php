@@ -99,7 +99,7 @@
         var inputNom = document.getElementById("nom");
         var inputCodeDep = document.getElementById("codedep");
         var option = select.options[select.selectedIndex];
-        inputNom.value = option.text.split(' - ')[1]; // assigne le nom de la ville à "nom"
+        inputNom.value = option.text.split(' - ')[1]; // assigne le nom du département à "nom"
         inputCodeDep.value = option.text.split(' - ')[0]; // assigne le code département à "codedep"
         });
         </script>

@@ -88,5 +88,9 @@ $bdd = getBD();
       </form>
   </div>
 </div>
-
+<div style="text-align: center; margin:20px;">
+    <a href="forum.php">
+    <button id="AuthBut" type="submit">Retour</button>
+    </a>
+</div>
 </body>
