@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 20 mars 2023 à 13:01
--- Version du serveur : 5.7.36
--- Version de PHP : 7.4.26
+-- Généré le : mar. 04 avr. 2023 à 14:39
+-- Version du serveur : 8.0.31
+-- Version de PHP : 8.0.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,16 +29,112 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `commentaire`;
 CREATE TABLE IF NOT EXISTS `commentaire` (
-  `codecom` int(11) NOT NULL AUTO_INCREMENT,
-  `texte` text,
+  `codecom` int NOT NULL AUTO_INCREMENT,
+  `texte` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `date` date DEFAULT NULL,
   `heure` time DEFAULT NULL,
-  `pseudo` int(11) DEFAULT NULL,
-  `num_salle` int(11) DEFAULT NULL,
+  `pseudo` varchar(21) DEFAULT NULL,
+  `num_salle` int DEFAULT NULL,
   PRIMARY KEY (`codecom`),
   KEY `pseudo` (`pseudo`),
   KEY `num_salle` (`num_salle`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=91 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `commentaire`
+--
+
+INSERT INTO `commentaire` (`codecom`, `texte`, `date`, `heure`, `pseudo`, `num_salle`) VALUES
+(1, 'sss', '2023-03-23', '17:11:02', 'flo', 2),
+(2, '4555\r\n', '2023-03-23', '17:14:22', 'flo', 3),
+(3, 'blablabla\r\n', '2023-03-23', '18:35:19', 'flo', 4),
+(4, '', '2023-03-23', '18:35:35', 'flo', 4),
+(5, 'je suis bo', '2023-03-23', '18:36:39', 'flo', 4),
+(6, '566', '2023-03-23', '18:38:36', 'flo', 4),
+(7, 'nul', '2023-03-23', '18:38:56', 'flo', 4),
+(8, 'zaeazeaz', '2023-03-23', '19:24:05', 'flo', 4),
+(9, 'aezeaze', '2023-03-23', '19:24:11', 'flo', 4),
+(10, 'azeazeazeaz', '2023-03-23', '19:24:12', 'flo', 4),
+(11, 'qsdqsdqsdqs', '2023-03-23', '19:24:14', 'flo', 4),
+(12, 'qsdqsdqsdqs', '2023-03-23', '19:24:15', 'flo', 4),
+(13, 'qsdqsdqsdqs', '2023-03-23', '19:24:17', 'flo', 4),
+(14, 'qsdqsdqsdqsd', '2023-03-23', '19:24:19', 'flo', 4),
+(15, 'qsdqsdqsd', '2023-03-23', '19:24:21', 'flo', 4),
+(16, '899', '2023-03-23', '19:31:35', 'flo', 5),
+(17, 'sdqdsdqsd', '2023-03-23', '19:46:08', 'flo', 6),
+(18, 'ze21az42e2z1e12az1e12az2e2a1e', '2023-03-23', '19:57:13', 'flo', 7),
+(19, 'azeazazezaeazeazeazeazeazeazeazeeazazeazeazeazeazeazazezaeazeazeazeazeazeazeazeeazazeazeazeazeazeazazezaeazeazeazeazeazeazeazeeazazeazeazeazeazeazazezaeazeazeazeazeazeazeazeeazazeazeazeazeazeazazezaeazeazeazeazeazeazeazeeazazeazeazeazeazeazazezaeazeazeazeazeazeazeazeeazazeazeazeazeazeazazezaeazeazeazeazeazeazeazeeazazeazeazeazeazeazazezaeazeazeazeazeazeazeazeeazazeazeazeazeazeazazezaeazeazeazeazeazeazeazeeazazeazeazeazeazeazazezaeazeazeazeazeazeazeazeeazazeazeazeazeazeazazezaeazeazeazeazeazeazeazeeazazeazeazeazeazeazazezaeazeazeazeazeazeazeazeeazazeazeazeazeazeazazezaeazeazeazeazeazeazeazeeazazeazeazeazeazeazazezaeazeazeazeazeazeazeazeeazazeazeazeazeazeazazezaeazeazeazeazeazeazeazeeazazeazeazeazeazeazazezaeazeazeazeazeazeazeazeeazazeazeazeazeazeazazezaeazeazeazeazeazeazeazeeazazeazeazeazeazeazazezaeazeazeazeazeazeazeazeeazazeazeazeazeazeazazezaeazeazeazeazeazeazeazeeazazeazeazeazeazeazazezaeazeazeazeazeazeazeazeeazazeazeazeazeazeazazezaeazeazeazeazeazeazeazeeazazeazeazeazeazeazazezaeazeazeazeazeazeazeazeeazazeazeazeazeazeazazezaeazeazeazeazeazeazeazeeazazeazeazeaze', '2023-03-23', '19:57:29', 'flo', 8),
+(20, 'azeaz', '2023-03-23', '20:32:22', 'flo', NULL),
+(21, '56656', '2023-03-23', '20:33:26', 'flo', NULL),
+(22, '5656', '2023-03-23', '20:34:20', 'flo', NULL),
+(23, '6565', '2023-03-23', '20:34:41', 'flo', NULL),
+(24, '12345656\r\n', '2023-03-23', '20:36:38', 'flo', NULL),
+(25, '12345656\r\n', '2023-03-23', '20:37:03', 'flo', NULL),
+(26, 'aeazeazeaze', '2023-03-23', '20:37:08', 'flo', NULL),
+(27, '', '2023-03-23', '20:39:13', 'flo', NULL),
+(28, '', '2023-03-23', '20:39:20', 'flo', NULL),
+(29, '', '2023-03-23', '20:39:45', 'flo', NULL),
+(30, '', '2023-03-23', '20:39:49', 'flo', NULL),
+(31, 'aez', '2023-03-23', '20:39:54', 'flo', NULL),
+(32, '', '2023-03-23', '20:41:42', 'flo', NULL),
+(33, '21121', '2023-03-23', '20:42:00', 'flo', NULL),
+(34, '454', '2023-03-23', '20:44:04', 'flo', NULL),
+(35, '15611515', '2023-03-23', '20:45:14', 'flo', 10),
+(36, '', '2023-03-23', '20:45:24', 'flo', NULL),
+(37, '15611515', '2023-03-23', '20:45:26', 'flo', 11),
+(38, '15611515', '2023-03-23', '20:45:41', 'flo', 12),
+(39, 'erqsrsdfs', '2023-03-23', '20:45:54', 'flo', 13),
+(40, '', '2023-03-23', '20:49:44', 'flo', NULL),
+(41, '1545', '2023-03-23', '20:49:51', 'flo', NULL),
+(42, '152525', '2023-03-23', '20:53:23', 'flo', 4),
+(43, '152525', '2023-03-23', '20:53:35', 'flo', 4),
+(44, '', '2023-03-23', '20:53:39', 'flo', 2),
+(45, '2322', '2023-03-23', '20:53:44', 'flo', 2),
+(46, 'Zzae', '2023-03-23', '20:54:39', 'flo', 2),
+(47, 'zeaze', '2023-03-23', '20:54:41', 'flo', 2),
+(48, 'azeaze', '2023-03-23', '20:54:42', 'flo', 2),
+(49, 'zaeaze', '2023-03-23', '20:54:43', 'flo', 2),
+(50, 'aze', '2023-03-23', '20:56:27', 'flo', 2),
+(51, 'aezaeaze', '2023-03-23', '20:57:01', 'flo', 3),
+(52, 'aezaeaze', '2023-03-23', '20:57:08', 'flo', 3),
+(53, 'azeaze', '2023-03-23', '20:57:09', 'flo', 3),
+(54, 'azeaze', '2023-03-23', '20:57:10', 'flo', 3),
+(55, 'azeaze', '2023-03-23', '20:57:36', 'flo', 14),
+(56, 'azeaz', '2023-03-23', '20:57:37', 'flo', 14),
+(57, 'aezae', '2023-03-23', '20:57:39', 'flo', 14),
+(58, '', '2023-03-23', '20:57:40', 'flo', 14),
+(59, '', '2023-03-23', '20:57:41', 'flo', 14),
+(60, 'ad', '2023-03-23', '20:58:12', 'flo', 1),
+(61, 'azeaz', '2023-03-23', '20:58:15', 'flo', 5),
+(62, 'zd', '2023-03-23', '20:59:59', 'flo', 1),
+(63, 'azeaz', '2023-03-23', '21:00:00', 'flo', 1),
+(64, 'azeaz', '2023-03-23', '21:17:55', 'flo', 2),
+(65, 'azeaze', '2023-03-23', '21:17:59', 'flo', 15),
+(66, 'aze', '2023-03-23', '21:18:02', 'flo', 15),
+(67, 'aeaze', '2023-03-23', '21:18:08', 'flo', 16),
+(68, 'aeazeaz', '2023-03-23', '22:21:57', 'test', 5),
+(69, 'eazeaze', '2023-03-23', '22:21:59', 'test', 5),
+(70, 'aeze', '2023-03-23', '22:22:58', 'test', 8),
+(71, 'aezaze', '2023-03-23', '22:26:03', 'test', 9),
+(72, 'aze', '2023-03-23', '22:26:05', 'test', 9),
+(73, 'aze', '2023-03-23', '22:26:17', 'flo', 5),
+(74, 'yjhgjjk\r\n', '2023-03-28', '16:50:21', 'flo', 5),
+(75, '45456546', '2023-03-28', '16:50:46', 'flo', 5),
+(76, '454645', '2023-03-28', '16:50:58', 'flo', 5),
+(77, '45545', '2023-03-28', '16:51:06', 'flo', 17),
+(78, '64545656', '2023-03-28', '16:51:08', 'flo', 17),
+(79, 'com', '2023-03-29', '07:48:43', 'flo', 18),
+(80, 'post2\r\n', '2023-03-29', '07:48:57', 'flo', 18),
+(81, 'zaezae', '2023-03-29', '07:48:59', 'flo', 18),
+(82, 'aeaze', '2023-03-29', '11:01:17', NULL, 3),
+(83, 'azeaze', '2023-03-29', '11:01:19', NULL, 3),
+(84, 'aeez', '2023-03-29', '11:41:01', NULL, 1),
+(85, '&é\"', '2023-03-29', '11:47:08', NULL, 2),
+(86, '&é\"&é\"', '2023-03-29', '11:47:12', NULL, 2),
+(87, 'azeza', '2023-03-29', '11:47:45', NULL, 1),
+(88, 'z', '2023-03-29', '11:47:58', NULL, 7),
+(89, 'ze', '2023-03-29', '11:56:15', 'flo', 2),
+(90, 'ze', '2023-03-29', '11:56:16', 'flo', 2);
 
 -- --------------------------------------------------------
 
@@ -51,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `correspondre` (
   `codedep` varchar(2) NOT NULL,
   `codeelec` varchar(2) NOT NULL,
   PRIMARY KEY (`codedep`,`codeelec`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Déchargement des données de la table `correspondre`
@@ -158,13 +254,7 @@ INSERT INTO `correspondre` (`codedep`, `codeelec`) VALUES
 ('ZB', 'ZB'),
 ('ZC', 'ZC'),
 ('ZD', 'ZD'),
-('ZM', 'ZM'),
-('ZN', 'ZN'),
-('ZP', 'ZP'),
-('ZS', 'ZS'),
-('ZW', 'ZW'),
-('ZX', 'ZX'),
-('ZZ', 'ZZ');
+('ZM', 'ZM');
 
 -- --------------------------------------------------------
 
@@ -175,126 +265,133 @@ INSERT INTO `correspondre` (`codedep`, `codeelec`) VALUES
 DROP TABLE IF EXISTS `departement`;
 CREATE TABLE IF NOT EXISTS `departement` (
   `codedep` varchar(2) NOT NULL,
-  `nom` varchar(31) DEFAULT NULL,
-  `region` varchar(31) DEFAULT NULL,
+  `nom` varchar(23) DEFAULT NULL,
+  `region` varchar(26) DEFAULT NULL,
   `chef_lieu` varchar(20) DEFAULT NULL,
-  `superficie` int(6) DEFAULT NULL,
-  `population` int(7) DEFAULT NULL,
+  `superficie` int DEFAULT NULL,
+  `Population` int DEFAULT NULL,
   PRIMARY KEY (`codedep`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Déchargement des données de la table `departement`
 --
 
-INSERT INTO `departement` (`codedep`, `nom`, `region`, `chef_lieu`, `superficie`, `population`) VALUES
-('01', 'Ain', 'Auvergne-Rhône-Alpes', 'Bourg-en-Bresse', 5762, 631877),
-('02', 'Aisne', 'Hauts-de-France', 'Laon', 7369, 538659),
-('03', 'Allier', 'Auvergne-Rhône-Alpes', 'Moulins', 7340, 341613),
-('04', 'Alpes-de-Haute-Provence', 'Provence-Alpes-Côte d\'Azur', 'Digne', 6925, 161799),
-('05', 'Hautes-Alpes', 'Provence-Alpes-Côte d\'Azur', 'Gap', 5549, 140916),
-('06', 'Alpes-Maritimes', 'Provence-Alpes-Côte d\'Azur', 'Nice', 4299, 1082440),
-('07', 'Ardèche', 'Auvergne-Rhône-Alpes', 'Privas', 5529, 324209),
-('08', 'Ardennes', 'Grand Est', 'Charleville-Mézières', 5229, 277752),
-('09', 'Ariège', 'Occitanie', 'Foix', 4890, 152499),
-('10', 'Aube', 'Grand Est', 'Troyes', 6004, 309056),
-('11', 'Aude', 'Occitanie', 'Carcassonne', 6139, 366957),
-('12', 'Aveyron', 'Occitanie', 'Rodez', 8735, 279169),
-('13', 'Bouches-du-Rhône', 'Provence-Alpes-Côte d\'Azur', 'Marseille', 5088, 2016622),
-('14', 'Calvados', 'Normandie', 'Caen', 5548, 693579),
-('15', 'Cantal', 'Auvergne-Rhône-Alpes', 'Aurillac', 5726, 146219),
-('16', 'Charente', 'Nouvelle-Aquitaine', 'Angoulême', 5956, 353613),
-('17', 'Charente-Maritime', 'Nouvelle-Aquitaine', 'La Rochelle', 6864, 639938),
-('18', 'Cher', 'Centre-Val de Loire', 'Bourges', 7235, 308992),
-('19', 'Corrèze', 'Nouvelle-Aquitaine', 'Tulle', 5857, 241871),
-('21', 'Côte-d\'Or', 'Bourgogne-Franche-Comté', 'Dijon', 8763, 533147),
-('22', 'Côtes d\'Armor', 'Bretagne', 'Saint-Brieuc', 6878, 598357),
-('23', 'Creuse', 'Nouvelle-Aquitaine', 'Guéret', 5565, 120365),
-('24', 'Dordogne', 'Nouvelle-Aquitaine', 'Périgueux', 9060, 415417),
-('25', 'Doubs', 'Bourgogne-Franche-Comté', 'Besançon', 5233, 536959),
-('26', 'Drôme', 'Auvergne-Rhône-Alpes', 'Valence', 6530, 504637),
-('27', 'Eure', 'Normandie', 'Évreux', 6040, 601948),
-('28', 'Eure-et-Loir', 'Centre-Val de Loire', 'Chartres', 5880, 434035),
-('29', 'Finistère', 'Bretagne', 'Quimper', 6733, 907796),
-('2A', 'Corse-du-Sud', 'Corse', 'Ajaccio', 4014, 152730),
-('2B', 'Haute-Corse', 'Corse', 'Bastia', 4666, 174553),
-('30', 'Gard', 'Occitanie', 'Nîmes', 5853, 738189),
-('31', 'Haute-Garonne', 'Occitanie', 'Toulouse', 6309, 1335103),
-('32', 'Gers', 'Occitanie', 'Auch', 6257, 190932),
-('33', 'Gironde', 'Nouvelle-Aquitaine', 'Bordeaux', 9976, 1548478),
-('34', 'Hérault', 'Occitanie', 'Montpellier', 6101, 1120190),
-('35', 'Ille-et-Vilaine', 'Bretagne', 'Rennes', 6775, 1042884),
-('36', 'Indre', 'Centre-Val de Loire', 'Châteauroux', 6791, 224200),
-('37', 'Indre-et-Loire', 'Centre-Val de Loire', 'Tours', 6127, 604966),
-('38', 'Isère', 'Auvergne-Rhône-Alpes', 'Grenoble', 7432, 1251060),
-('39', 'Jura', 'Bourgogne-Franche-Comté', 'Lons-le-Saunier', 4999, 260587),
-('40', 'Landes', 'Nouvelle-Aquitaine', 'Mont-de-Marsan', 9243, 403234),
-('41', 'Loir-et-Cher', 'Centre-Val de Loire', 'Blois', 6343, 333050),
-('42', 'Loire', 'Auvergne-Rhône-Alpes', 'Saint-Étienne', 4781, 759411),
-('43', 'Haute-Loire', 'Auvergne-Rhône-Alpes', 'Le Puy-en-Velay', 4977, 227034),
-('44', 'Loire-Atlantique', 'Pays de la Loire', 'Nantes', 6809, 1365227),
-('45', 'Loiret', 'Centre-Val de Loire', 'Orléans', 6775, 673349),
-('46', 'Lot', 'Occitanie', 'Cahors', 5217, 173400),
-('47', 'Lot-et-Garonne', 'Nouvelle-Aquitaine', 'Agen', 5361, 333417),
-('48', 'Lozère', 'Occitanie', 'Mende', 5167, 76309),
-('49', 'Maine-et-Loire', 'Pays de la Loire', 'Angers', 7172, 810186),
-('50', 'Manche', 'Normandie', 'Saint-Lô', 5938, 499287),
-('51', 'Marne', 'Grand Est', 'Châlons-en-Champagne', 8162, 572293),
-('52', 'Haute-Marne', 'Grand Est', 'Chaumont', 6211, 179154),
-('53', 'Mayenne', 'Pays de la Loire', 'Laval', 5175, 307940),
-('54', 'Meurthe-et-Moselle', 'Grand Est', 'Nancy', 5246, 734403),
-('55', 'Meuse', 'Grand Est', 'Bar-le-Duc', 6211, 190626),
-('56', 'Morbihan', 'Bretagne', 'Vannes', 6823, 744813),
-('57', 'Moselle', 'Grand Est', 'Metz', 6216, 1044486),
-('58', 'Nièvre', 'Bourgogne-Franche-Comté', 'Nevers', 6817, 211747),
-('59', 'Nord', 'Hauts-de-France', 'Lille', 5743, 2605238),
-('60', 'Oise', 'Hauts-de-France', 'Beauvais', 5860, 821552),
-('61', 'Orne', 'Normandie', 'Alençon', 6103, 286618),
-('62', 'Pas-de-Calais', 'Hauts-de-France', 'Arras', 6671, 1472648),
-('63', 'Puy-de-Dôme', 'Auvergne-Rhône-Alpes', 'Clermont-Ferrand', 7970, 647501),
-('64', 'Pyrénées-Atlantiques', 'Nouvelle-Aquitaine', 'Pau', 7645, 670032),
-('65', 'Hautes-Pyrénées', 'Occitanie', 'Tarbes', 4464, 228582),
-('66', 'Pyrénées-Orientales', 'Occitanie', 'Perpignan', 4116, 471038),
-('67', 'Bas-Rhin', 'Grand Est', 'Strasbourg', 4755, 1116658),
-('68', 'Haut-Rhin', 'Grand Est', 'Colmar', 3525, 762607),
-('69', 'Rhône', 'Auvergne-Rhône-Alpes', 'Lyon', 3249, 1821995),
-('70', 'Haute-Saône', 'Bourgogne-Franche-Comté', 'Vesoul', 5360, 237706),
-('71', 'Saône-et-Loire', 'Bourgogne-Franche-Comté', 'Mâcon', 8575, 555408),
-('72', 'Sarthe', 'Pays de la Loire', 'Le Mans', 6206, 568445),
-('73', 'Savoie', 'Auvergne-Rhône-Alpes', 'Chambéry', 6028, 428204),
-('74', 'Haute-Savoie', 'Auvergne-Rhône-Alpes', 'Annecy', 4388, 793938),
-('75', 'Paris', 'Ile-de-France', 'Paris', 105, 2206488),
-('76', 'Seine-Maritime', 'Normandie', 'Rouen', 6278, 1257699),
-('77', 'Seine-et-Marne', 'Ile-de-France', 'Melun', 5915, 1390121),
-('78', 'Yvelines', 'Ile-de-France', 'Versailles', 2284, 1427291),
-('79', 'Deux-Sèvres', 'Nouvelle-Aquitaine', 'Niort', 5999, 374435),
-('80', 'Somme', 'Hauts-de-France', 'Amiens', 6170, 571879),
-('81', 'Tarn', 'Occitanie', 'Albi', 5758, 386543),
-('82', 'Tarn-et-Garonne', 'Occitanie', 'Montauban', 3718, 255274),
-('83', 'Var', 'Provence-Alpes-Côte d\'Azur', 'Toulon', 5973, 1048652),
-('84', 'Vaucluse', 'Provence-Alpes-Côte d\'Azur', 'Avignon', 3567, 557548),
-('85', 'Vandée', 'Pays de la Loire', 'La Roche-sur-Yon', 6720, 666714),
-('86', 'Vienne', 'Nouvelle-Aquitaine', 'Poitiers', 6990, 434887),
-('87', 'Haute-Vienne', 'Nouvelle-Aquitaine', 'Limoges', 5520, 375795),
-('88', 'Vosges', 'Grand Est', 'Épinal', 5874, 372016),
-('89', 'Yonne', 'Bourgogne-Franche-Comté', 'Auxerre', 7427, 340903),
-('90', 'Territoire de Belfort', 'Bourgogne-Franche-Comté', 'Belfort', 609, 144483),
-('91', 'Essonne', 'Ile-de-France', 'Évry', 1804, 1276233),
-('92', 'Hauts-de-Seine', 'Ile-de-France', 'Nanterre', 176, 1601569),
-('93', 'Seine-St-Denis', 'Ile-de-France', 'Bobigny', 236, 1592663),
-('94', 'Val-de-Marne', 'Ile-de-France', 'Créteil', 245, 1372389),
-('95', 'Val-D\'Oise', 'Ile-de-France', 'Pontoise', 1246, 1215390),
-('ZA', 'Guadeloupe', 'Guadeloupe', 'Basse-Terre', 1628, 397990),
-('ZB', 'Martinique', 'Martinique', 'Fort-de-France', 1128, 380877),
-('ZC', 'Guyane', 'Guyane', 'Cayenne', 83534, 259865),
-('ZD', 'La Réunion', 'La Réunion', 'Saint-Denis', 2504, 850727),
-('ZM', 'Mayotte', 'Mayotte', 'Dzaoudzi', 376, 256518),
-('ZN', 'Nouvelle-Calédonie', 'Nouvelle-Calédonie', 'Nouméa', 18575, 271407),
-('ZP', 'Polynésie française', 'Polynésie française', 'Papeete', 4200, 275918),
-('ZS', 'Saint-Pierre-et-Miquelon', 'Saint-Pierre-et-Miquelon', 'Saint-pierre', 439672, 6092),
-('ZW', 'Wallis et Futuna', 'Wallis et Futuna', 'Mata Utu', 140, 11558),
-('ZX', 'Saint-Martin/Saint-Barthélemy', 'Saint-Martin/Saint-Barthélemy', 'Marigot/Gustavia', 78, 42943),
-('ZZ', 'Français établis hors de France', 'Français établis hors de France', NULL, NULL, NULL);
+INSERT INTO `departement` (`codedep`, `nom`, `region`, `chef_lieu`, `superficie`, `Population`) VALUES
+('01', 'Ain', 'Auvergne-Rhône-Alpes', 'Bourg-en-Bresse', 5762, 649654),
+('02', 'Aisne', 'Hauts-de-France', 'Laon', 7369, 534286),
+('03', 'Allier', 'Auvergne-Rhône-Alpes', 'Moulins', 7340, 338978),
+('04', 'Alpes-de-Haute-Provence', 'Provence-Alpes-Côte d\'Azur', 'Digne', 6925, 161664),
+('05', 'Hautes-Alpes', 'Provence-Alpes-Côte d\'Azur', 'Gap', 5549, 141576),
+('06', 'Alpes-Maritimes', 'Provence-Alpes-Côte d\'Azur', 'Nice', 4299, 1080614),
+('07', 'Ardèche', 'Auvergne-Rhône-Alpes', 'Privas', 5529, 328557),
+('08', 'Ardennes', 'Grand Est', 'Charleville-Mézières', 5229, 271339),
+('09', 'Ariège', 'Occitanie', 'Foix', 4890, 152321),
+('10', 'Aube', 'Grand Est', 'Troyes', 6004, 311623),
+('11', 'Aude', 'Occitanie', 'Carcassonne', 6139, 370245),
+('12', 'Aveyron', 'Occitanie', 'Rodez', 8735, 281082),
+('13', 'Bouches-du-Rhône', 'Provence-Alpes-Côte d\'Azur', 'Marseille', 5088, 2043941),
+('14', 'Calvados', 'Normandie', 'Caen', 5548, 695818),
+('15', 'Cantal', 'Auvergne-Rhône-Alpes', 'Aurillac', 5726, 144240),
+('16', 'Charente', 'Nouvelle-Aquitaine', 'Angoulême', 5956, 351971),
+('17', 'Charente-Maritime', 'Nouvelle-Aquitaine', 'La Rochelle', 6864, 648183),
+('18', 'Cher', 'Centre-Val de Loire', 'Bourges', 7235, 304794),
+('19', 'Corrèze', 'Nouvelle-Aquitaine', 'Tulle', 5857, 241891),
+('21', 'Côte-d\'Or', 'Bourgogne-Franche-Comté', 'Dijon', 8763, 536837),
+('22', 'Côtes d\'Armor', 'Bretagne', 'Saint-Brieuc', 6878, 598715),
+('23', 'Creuse', 'Nouvelle-Aquitaine', 'Guéret', 5565, 118711),
+('24', 'Dordogne', 'Nouvelle-Aquitaine', 'Périgueux', 9060, 412629),
+('25', 'Doubs', 'Bourgogne-Franche-Comté', 'Besançon', 5233, 540890),
+('26', 'Drôme', 'Auvergne-Rhône-Alpes', 'Valence', 6530, 516172),
+('27', 'Eure', 'Normandie', 'Évreux', 6040, 610152),
+('28', 'Eure-et-Loir', 'Centre-Val de Loire', 'Chartres', 5880, 433983),
+('29', 'Finistère', 'Bretagne', 'Quimper', 6733, 910502),
+('2A', 'Corse-du-Sud', 'Corse', 'Ajaccio', 4014, 159894),
+('2B', 'Haute-Corse', 'Corse', 'Bastia', 4666, 177902),
+('30', 'Gard', 'Occitanie', 'Nîmes', 5853, 748236),
+('31', 'Haute-Garonne', 'Occitanie', 'Toulouse', 6309, 1388393),
+('32', 'Gers', 'Occitanie', 'Auch', 6257, 191332),
+('33', 'Gironde', 'Nouvelle-Aquitaine', 'Bordeaux', 9976, 1610829),
+('34', 'Hérault', 'Occitanie', 'Montpellier', 6101, 1160043),
+('35', 'Ille-et-Vilaine', 'Bretagne', 'Rennes', 6775, 1073883),
+('36', 'Indre', 'Centre-Val de Loire', 'Châteauroux', 6791, 218508),
+('37', 'Indre-et-Loire', 'Centre-Val de Loire', 'Tours', 6127, 611139),
+('38', 'Isère', 'Auvergne-Rhône-Alpes', 'Grenoble', 7432, 1272816),
+('39', 'Jura', 'Bourgogne-Franche-Comté', 'Lons-le-Saunier', 4999, 259393),
+('40', 'Landes', 'Nouvelle-Aquitaine', 'Mont-de-Marsan', 9243, 411757),
+('41', 'Loir-et-Cher', 'Centre-Val de Loire', 'Blois', 6343, 332601),
+('42', 'Loire', 'Auvergne-Rhône-Alpes', 'Saint-Étienne', 4781, 762495),
+('43', 'Haute-Loire', 'Auvergne-Rhône-Alpes', 'Le Puy-en-Velay', 4977, 227444),
+('44', 'Loire-Atlantique', 'Pays de la Loire', 'Nantes', 6809, 1413341),
+('45', 'Loiret', 'Centre-Val de Loire', 'Orléans', 6775, 681497),
+('46', 'Lot', 'Occitanie', 'Cahors', 5217, 171463),
+('47', 'Lot-et-Garonne', 'Nouvelle-Aquitaine', 'Agen', 5361, 333230),
+('48', 'Lozère', 'Occitanie', 'Mende', 5167, 75463),
+('49', 'Maine-et-Loire', 'Pays de la Loire', 'Angers', 7172, 820655),
+('50', 'Manche', 'Normandie', 'Saint-Lô', 5938, 496972),
+('51', 'Marne', 'Grand Est', 'Châlons-en-Champagne', 8162, 573253),
+('52', 'Haute-Marne', 'Grand Est', 'Chaumont', 6211, 175102),
+('53', 'Mayenne', 'Pays de la Loire', 'Laval', 5175, 306323),
+('54', 'Meurthe-et-Moselle', 'Grand Est', 'Nancy', 5246, 733085),
+('55', 'Meuse', 'Grand Est', 'Bar-le-Duc', 6211, 187372),
+('56', 'Morbihan', 'Bretagne', 'Vannes', 6823, 753543),
+('57', 'Moselle', 'Grand Est', 'Metz', 6216, 1038558),
+('58', 'Nièvre', 'Bourgogne-Franche-Comté', 'Nevers', 6817, 205942),
+('59', 'Nord', 'Hauts-de-France', 'Lille', 5743, 2613874),
+('60', 'Oise', 'Hauts-de-France', 'Beauvais', 5860, 829839),
+('61', 'Orne', 'Normandie', 'Alençon', 6103, 282516),
+('62', 'Pas-de-Calais', 'Hauts-de-France', 'Arras', 6671, 1475142),
+('63', 'Puy-de-Dôme', 'Auvergne-Rhône-Alpes', 'Clermont-Ferrand', 7970, 655185),
+('64', 'Pyrénées-Atlantiques', 'Nouvelle-Aquitaine', 'Pau', 7645, 677189),
+('65', 'Hautes-Pyrénées', 'Occitanie', 'Tarbes', 4464, 227492),
+('66', 'Pyrénées-Orientales', 'Occitanie', 'Perpignan', 4116, 482131),
+('67', 'Bas-Rhin', 'Grand Est', 'Strasbourg', 4755, 1125279),
+('68', 'Haut-Rhin', 'Grand Est', 'Colmar', 3525, 767606),
+('69', 'Rhône', 'Auvergne-Rhône-Alpes', 'Lyon', 3249, 1878095),
+('70', 'Haute-Saône', 'Bourgogne-Franche-Comté', 'Vesoul', 5360, 234316),
+('71', 'Saône-et-Loire', 'Bourgogne-Franche-Comté', 'Mâcon', 8575, 553129),
+('72', 'Sarthe', 'Pays de la Loire', 'Le Mans', 6206, 566901),
+('73', 'Savoie', 'Auvergne-Rhône-Alpes', 'Chambéry', 6028, 433755),
+('74', 'Haute-Savoie', 'Auvergne-Rhône-Alpes', 'Annecy', 4388, 829668),
+('75', 'Paris', 'Ile-de-France', 'Paris', 105, 2168462),
+('76', 'Seine-Maritime', 'Normandie', 'Rouen', 6278, 1257009),
+('77', 'Seine-et-Marne', 'Ile-de-France', 'Melun', 5915, 1422736),
+('78', 'Yvelines', 'Ile-de-France', 'Versailles', 2284, 1438440),
+('79', 'Deux-Sèvres', 'Nouvelle-Aquitaine', 'Niort', 5999, 375652),
+('80', 'Somme', 'Hauts-de-France', 'Amiens', 6170, 570195),
+('81', 'Tarn', 'Occitanie', 'Albi', 5758, 392407),
+('82', 'Tarn-et-Garonne', 'Occitanie', 'Montauban', 3718, 262582),
+('83', 'Var', 'Provence-Alpes-Côte d\'Azur', 'Toulon', 5973, 1071832),
+('84', 'Vaucluse', 'Provence-Alpes-Côte d\'Azur', 'Avignon', 3567, 566096),
+('85', 'Vandée', 'Pays de la Loire', 'La Roche-sur-Yon', 6720, 680191),
+('86', 'Vienne', 'Nouvelle-Aquitaine', 'Poitiers', 6990, 438136),
+('87', 'Haute-Vienne', 'Nouvelle-Aquitaine', 'Limoges', 5520, 374158),
+('88', 'Vosges', 'Grand Est', 'Épinal', 5874, 364873),
+('89', 'Yonne', 'Bourgogne-Franche-Comté', 'Auxerre', 7427, 338303),
+('90', 'Territoire de Belfort', 'Bourgogne-Franche-Comté', 'Belfort', 609, 144479),
+('91', 'Essonne', 'Ile-de-France', 'Évry', 1804, 1313729),
+('92', 'Hauts-de-Seine', 'Ile-de-France', 'Nanterre', 176, 1612788),
+('93', 'Seine-St-Denis', 'Ile-de-France', 'Bobigny', 236, 1646105),
+('94', 'Val-de-Marne', 'Ile-de-France', 'Créteil', 245, 1401228),
+('95', 'Val-D\'Oise', 'Ile-de-France', 'Pontoise', 1246, 1242746),
+('ZA', 'Guadeloupe', 'Guadeloupe', 'Basse-Terre', 1628, 390704),
+('ZB', 'Martinique', 'Martinique', 'Fort-de-France', 1128, 371246),
+('ZC', 'Guyane', 'Guyane', 'Cayenne', 83534, 281612),
+('ZD', 'La Réunion', 'La Réunion', 'Saint-Denis', 2504, 865826),
+('ZM', 'Mayotte', 'Mayotte', 'Dzaoudzi', 376, 259154);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `deposer`
+--
+
+DROP TABLE IF EXISTS `deposer`;
+CREATE TABLE IF NOT EXISTS `deposer` (
+  `pseudo` varchar(25) NOT NULL,
+  `numsalle` int NOT NULL,
+  PRIMARY KEY (`pseudo`,`numsalle`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -305,27 +402,27 @@ INSERT INTO `departement` (`codedep`, `nom`, `region`, `chef_lieu`, `superficie`
 DROP TABLE IF EXISTS `election`;
 CREATE TABLE IF NOT EXISTS `election` (
   `codeelec` varchar(2) NOT NULL,
-  `Inscrits` int(7) DEFAULT NULL,
-  `Abstentions` int(6) DEFAULT NULL,
+  `Inscrits` int DEFAULT NULL,
+  `Abstentions` int DEFAULT NULL,
   `%Abs` decimal(4,2) DEFAULT NULL,
-  `Votants` int(7) DEFAULT NULL,
+  `Votants` int DEFAULT NULL,
   `%Vot` decimal(4,2) DEFAULT NULL,
-  `Blancs` int(5) DEFAULT NULL,
+  `Blancs` int DEFAULT NULL,
   `%Blancs` decimal(3,2) DEFAULT NULL,
-  `Nuls` int(5) DEFAULT NULL,
+  `Nuls` int DEFAULT NULL,
   `%Nuls` decimal(3,2) DEFAULT NULL,
-  `VoixMacron` int(6) DEFAULT NULL,
-  `%VoixMacron` decimal(4,2) DEFAULT NULL,
-  `VoixLePen` int(6) DEFAULT NULL,
-  `%VoixLePen` decimal(4,2) DEFAULT NULL,
+  `VoixMacron` int DEFAULT NULL,
+  `TauxVoixMacron` decimal(4,2) DEFAULT NULL,
+  `VoixLePen` int DEFAULT NULL,
+  `TauxVoixLePen` decimal(4,2) DEFAULT NULL,
   PRIMARY KEY (`codeelec`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Déchargement des données de la table `election`
 --
 
-INSERT INTO `election` (`codeelec`, `Inscrits`, `Abstentions`, `%Abs`, `Votants`, `%Vot`, `Blancs`, `%Blancs`, `Nuls`, `%Nuls`, `VoixMacron`, `%VoixMacron`, `VoixLePen`, `%VoixLePen`) VALUES
+INSERT INTO `election` (`codeelec`, `Inscrits`, `Abstentions`, `%Abs`, `Votants`, `%Vot`, `Blancs`, `%Blancs`, `Nuls`, `%Nuls`, `VoixMacron`, `TauxVoixMacron`, `VoixLePen`, `TauxVoixLePen`) VALUES
 ('01', 438250, 109568, '25.00', 328682, '75.00', 19802, '4.52', 5875, '1.34', 166635, '54.99', 136370, '45.01'),
 ('02', 373621, 97965, '26.22', 275656, '73.78', 14465, '3.87', 5694, '1.52', 102428, '40.09', 153069, '59.91'),
 ('03', 249954, 62311, '24.93', 187643, '75.07', 13866, '5.55', 6370, '2.55', 87645, '52.35', 79762, '47.65'),
@@ -426,13 +523,7 @@ INSERT INTO `election` (`codeelec`, `Inscrits`, `Abstentions`, `%Abs`, `Votants`
 ('ZB', 304670, 166201, '54.55', 138469, '45.45', 11198, '3.68', 7353, '2.41', 46918, '39.13', 73000, '60.87'),
 ('ZC', 103058, 62970, '61.10', 40088, '38.90', 3049, '2.96', 1768, '1.72', 13834, '39.22', 21437, '60.78'),
 ('ZD', 676080, 274588, '40.61', 401492, '59.39', 20584, '3.04', 16644, '2.46', 147297, '40.44', 216967, '59.56'),
-('ZM', 92421, 50377, '54.51', 42044, '45.49', 1645, '1.78', 1997, '2.16', 15708, '40.90', 22694, '59.10'),
-('ZN', 218713, 142591, '65.20', 76122, '34.80', 3030, '1.39', 1337, '0.61', 43795, '61.03', 27960, '38.97'),
-('ZP', 205633, 118714, '57.73', 86919, '42.27', 2398, '1.17', 1718, '0.84', 42890, '51.80', 39913, '48.20'),
-('ZS', 5043, 2164, '42.91', 2879, '57.09', 219, '4.34', 139, '2.76', 1243, '49.31', 1278, '50.69'),
-('ZW', 9514, 3674, '38.62', 5840, '61.38', 100, '1.05', 60, '0.63', 3831, '67.45', 1849, '32.55'),
-('ZX', 24435, 15107, '61.83', 9328, '38.17', 471, '1.93', 220, '0.90', 3850, '44.58', 4787, '55.42'),
-('ZZ', 1427918, 876432, '61.38', 551486, '38.62', 15292, '1.07', 3490, '0.24', 458874, '86.14', 73830, '13.86');
+('ZM', 92421, 50377, '54.51', 42044, '45.49', 1645, '1.78', 1997, '2.16', 15708, '40.90', 22694, '59.10');
 
 -- --------------------------------------------------------
 
@@ -442,10 +533,10 @@ INSERT INTO `election` (`codeelec`, `Inscrits`, `Abstentions`, `%Abs`, `Votants`
 
 DROP TABLE IF EXISTS `likercom`;
 CREATE TABLE IF NOT EXISTS `likercom` (
-  `codecom` int(11) NOT NULL,
+  `codecom` int NOT NULL,
   `pseudo` varchar(20) NOT NULL,
   PRIMARY KEY (`codecom`,`pseudo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -456,9 +547,16 @@ CREATE TABLE IF NOT EXISTS `likercom` (
 DROP TABLE IF EXISTS `likerforum`;
 CREATE TABLE IF NOT EXISTS `likerforum` (
   `pseudo` varchar(20) NOT NULL,
-  `numsalle` int(11) NOT NULL,
-  PRIMARY KEY (`pseudo`,`numsalle`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `num_salle` int NOT NULL,
+  PRIMARY KEY (`pseudo`,`num_salle`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Déchargement des données de la table `likerforum`
+--
+
+INSERT INTO `likerforum` (`pseudo`, `num_salle`) VALUES
+('flo', 2);
 
 -- --------------------------------------------------------
 
@@ -468,19 +566,36 @@ CREATE TABLE IF NOT EXISTS `likerforum` (
 
 DROP TABLE IF EXISTS `salle_forum`;
 CREATE TABLE IF NOT EXISTS `salle_forum` (
-  `num_salle` int(11) NOT NULL AUTO_INCREMENT,
+  `num_salle` int NOT NULL AUTO_INCREMENT,
   `nomforum` varchar(255) DEFAULT NULL,
   `pseudo` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`num_salle`),
   KEY `pseudo` (`pseudo`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `salle_forum`
 --
 
 INSERT INTO `salle_forum` (`num_salle`, `nomforum`, `pseudo`) VALUES
-(1, 'test', 'flo');
+(1, 'test', 'flo'),
+(2, 'ss', 'flo'),
+(3, '4555', 'flo'),
+(4, 'balbloalbal', 'flo'),
+(5, '999', 'flo'),
+(6, '544545', 'flo'),
+(7, 'e1a12e12aze122', 'flo'),
+(8, 'azeazazezaeazeazeazeazeazeazeazeeazazeazeazeazeazeazazezaeazeazeazeazeazeazeazeeazazeazeazeazeazeazazezaeazeazeazeazeazeazeazeeazazeazeazeazeazeazazezaeazeazeazeazeazeazeazeeazazeazeazeazeazeazazezaeazeazeazeazeazeazeazeeazazeazeazeaze', 'flo'),
+(9, 'zaer', 'flo'),
+(10, '1442', 'flo'),
+(11, '1442', 'flo'),
+(12, '1442', 'flo'),
+(13, 'teststst', 'flo'),
+(14, 'azeaze', 'flo'),
+(15, 'azeaz', 'flo'),
+(16, 'azeaz', 'flo'),
+(17, '45445', 'flo'),
+(18, 'nom', 'flo');
 
 -- --------------------------------------------------------
 
@@ -496,7 +611,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `nom` varchar(50) NOT NULL,
   `prenom` varchar(50) NOT NULL,
   PRIMARY KEY (`pseudo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Déchargement des données de la table `utilisateur`
@@ -504,7 +619,8 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
 
 INSERT INTO `utilisateur` (`pseudo`, `mail`, `mdp`, `nom`, `prenom`) VALUES
 ('flo', 'popopo@gmail.com', 'aa36dc6e81e2ac7ad03e12fedcb6a2c0', 'Dubois', 'Florian'),
-('michoudu07', 'mathilde@gmail.com', 'e0323a9039add2978bf5b49550572c7c', 'MICHEL', 'Mathilde');
+('michoudu07', 'mathilde@gmail.com', 'e0323a9039add2978bf5b49550572c7c', 'MICHEL', 'Mathilde'),
+('test', 'test', '098f6bcd4621d373cade4e832627b4f6', 'test', 'test');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
