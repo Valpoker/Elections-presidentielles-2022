@@ -71,7 +71,7 @@
     
     
 <div style='text-align:center; margin:20px;' id="rechdep">
-    <form action="resultat.php" method="POST">
+    <form action="resultat.php" method="GET">
         <?php 
             include 'bd.php';
             $bdd = getBD();
@@ -174,7 +174,9 @@ function onEachFeature(feature, layer) {
         mouseout: resetHighlight,
         //click: zoomToFeature
 		click: function(e) {
-            window.location.href = "resultat.php";
+            var nom = feature.properties.departement;
+            var codedep = feature.properties.code_departement;
+            window.location.href = "resultat.php?nom=" + nom + "&codedep=" + codedep;
         }
     });
 }
@@ -288,7 +290,12 @@ function onEachFeature2(feature, layer) {
     layer.on({
         mouseover: highlightFeature2,
         mouseout: resetHighlight2,
-        click: zoomToFeature2
+        //click: zoomToFeature2
+        click: function(e) {
+            var nom = feature.properties.departement;
+            var codedep = feature.properties.code_departement;
+            window.location.href = "resultat.php?nom=" + nom + "&codedep=" + codedep;
+        }
     });
 }
 

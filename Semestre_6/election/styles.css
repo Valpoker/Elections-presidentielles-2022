@@ -45,7 +45,10 @@ body {
 	background-color: #F2F3F4;
 }
 
-
+#histo{
+	text-align: center;
+	height: 500px;
+}
 
 .photocontact {
 	border-radius:30px;

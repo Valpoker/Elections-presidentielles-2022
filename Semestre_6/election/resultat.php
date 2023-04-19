@@ -26,17 +26,25 @@
 <body>
 <?php 
 	session_start();
-    include 'bd.php';
-    $bdd = getBD();
-
-	$_SESSION['nomDep'] = $_POST['nom'];
+	include 'bd.php';
+	$bdd = getBD();
 	
-	$result = $bdd->prepare("SELECT TauxVoixMacron, TauxVoixLePen FROM election WHERE codeelec = :code_dep");
-	$result->execute(array(':code_dep' => $_POST['codedep']));
-
-	while ($ligne = $result->fetch(PDO::FETCH_ASSOC)) {
-   		$_SESSION['vote_macron'] = $ligne['TauxVoixMacron'];
-    	$_SESSION['vote_lepen'] = $ligne['TauxVoixLePen'];
+	if(isset($_GET['nom'])){
+	
+		$_SESSION['nomDep'] = $_GET['nom'];
+		$_SESSION['codedep'] = $_GET['codedep'];
+	
+		$result = $bdd->prepare("SELECT TauxVoixMacron, TauxVoixLePen, TauxVot, TauxAbs FROM election WHERE codeelec = :codedep");
+		$result->execute(array(':codedep' => $_SESSION['codedep']));
+	
+		while ($ligne = $result->fetch(PDO::FETCH_ASSOC)) {
+			$vote_macron = $ligne['TauxVoixMacron'];
+			$vote_lepen = $ligne['TauxVoixLePen'];
+			$votant = $ligne['TauxVot'];
+			$_SESSION['vote_macron'] = $vote_macron * ($votant/100);
+			$_SESSION['vote_lepen'] = $vote_lepen * ($votant/100);
+			$_SESSION['abstention'] = $ligne['TauxAbs'];
+		}
 	}
 ?>
 <div id=histo>
