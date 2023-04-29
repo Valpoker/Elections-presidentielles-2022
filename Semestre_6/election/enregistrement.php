@@ -12,7 +12,7 @@
    if(isset($_POST['pseudo']) && empty($_POST['pseudo']) || isset($_POST['mail']) && empty($_POST['mail']) || isset($_POST['mdp']) && empty($_POST['mdp']) 
         || isset($_POST['n']) && empty($_POST['n']) || isset($_POST['p']) && empty($_POST['p']) 
         ){
-            echo'<meta http-equiv="refresh" content="0;URL=creation.php?pseudo='.$_POST['pseudo'].'&mail='.$_POST['mail'].'&n='.$_POST['n'].'&p='.$_POST['p'].'">';
+            echo'<meta http-equiv="refresh" content="0;URL=inscription.php?pseudo='.$_POST['pseudo'].'&mail='.$_POST['mail'].'&n='.$_POST['n'].'&p='.$_POST['p'].'">';
         }else{
             enregistrer($_POST['pseudo'],$_POST['mail'],$_POST['mdp'],$_POST['n'],$_POST['p']);
             echo'<meta http-equiv="refresh" content="0;URL=election.php">';
